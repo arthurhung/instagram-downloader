@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<!--
+	Visualize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		{% load staticfiles %}
+		<title>Instagram Photos Downloader</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<link rel="Shortcut Icon" type="image/x-icon" href="{% static 'images/avatar3.jpg' %}" />
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<span class="avatar"><img src="{% static 'images/avatar3.jpg' %}" alt="" /></span>
+						<ul class="icons">
+							<form action="getInstagramImages" method="post" >
+							    {% csrf_token %}
+							    {{ form }}
+							    <li><input align="center" type="text" name='myUrl' placeholder="Instagram Photos Url" maxlength="85" size="50"/> </li>
+							    <li><input type="submit" value="Go" />  </li>
+							</form>
+						</ul>
+					</header>
+
+				<!-- Main -->
+				<label id="lbltipAddedComment" align="center" >test</label>
+				<script type="text/javascript">
+				  document.getElementById('lbltipAddedComment').innerHTML ="{{ errorMsg }}";
+				</script>
+				<!-- Footer -->
+					<footer id="footer">
+						<p>&copy; Untitled. All rights reserved. Design: <a href="https://youtu.be/jIM4-HLtUM0">Arthur</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.poptrox.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

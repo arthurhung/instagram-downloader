@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<!--
+	Visualize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+
+
+<li><a href= "{{ imageUrl }}" download style="font-size: 2em;"> Download </a></li>
+
+-->
+<html>
+	<head>
+		{% load staticfiles %}
+		<title>Instagram Photos Downloader</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<span class="avatar"><img src="{% static 'images/avatar3.jpg' %}" alt="" /></span>
+						<ul class="icons">
+							<form action="getInstagramImages" method="post" >
+							    {% csrf_token %}
+							    {{ form }}
+							    <li><input align="center" type="text" name='myUrl' placeholder="Instagram Photos Url" maxlength="85" size="50"/> </li>
+							    <li><input type="submit" value="Go" />  </li>
+							</form>
+						</ul>
+					<script type="text/javascript">
+
+					var linksStr = "{{ imageUrl }}".replace(/u&#39;/g, '"').replace(/&#39;/g, '"').replace(/u&quot;/g, '"').replace(/&quot;/g, '"');
+					var links = eval("(" + linksStr + ")") ;
+					function downloadAll(urls) {
+					  var link = document.createElement('a');
+					  link.setAttribute('download', null);
+					  link.style.display = 'none';
+					  document.body.appendChild(link);
+
+					  for (var i = 0; i < urls.length; i++) {
+					    link.setAttribute('href', urls[i]);
+					    link.click();
+					  }
+					  document.body.removeChild(link);
+					}
+
+					</script>
+				  <button onclick="downloadAll(window.links)">Download All Photos</button>
+					</header>
+
+				<!-- Main -->
+					<section id="main">
+						{% for url in imageUrl %}
+						   <div>
+						      <img style="display:block; margin:auto;" alt="dinsta" height="280" width="336" src="{{ url }}"/>
+						      <a href= "{{ url }}"  style="display:block; text-align:center; margin:auto;" download style="font-size: 2em;"> Download </a>
+						   </div>
+						{% endfor %}
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p>&copy; Untitled. All rights reserved. Design: <a href="https://youtu.be/jIM4-HLtUM0">Arthur</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.poptrox.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
